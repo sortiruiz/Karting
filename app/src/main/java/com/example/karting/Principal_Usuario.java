@@ -1,6 +1,7 @@
 package com.example.karting;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -36,7 +37,14 @@ public class Principal_Usuario extends AppCompatActivity {
         EditText apellidosUsuario = (EditText)findViewById(R.id.apellidos_usuario);
         EditText ubicacionUsuario = (EditText)findViewById(R.id.ubicacion_usuario);
 
+        //asociamos a la toolbar el menu que hemos creado, debemos de hacer un inglate
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
     }
 }

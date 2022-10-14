@@ -4,16 +4,16 @@
     <item
         android:title="Listado"
         android:id="@+id/listadoEventos"
-        android:icon="@drawable/Listado"
+        android:icon="@drawable/listado"
         app:showAsAction="ifRoom"/>
     <item
         android:title="Nuevo Evento"
         android:id="@+id/NuevoEvento"
-        android:icon="@drawable/Nuevo"
+        android:icon="@drawable/nuevo"
         app:showAsAction="ifRoom"/>
     <item
         android:title="Ajustes"
         android:id="@+id/Ajustes"
-        android:icon="@drawable/Ajuste"
+        android:icon="@drawable/ajuste"
         app:showAsAction="ifRoom"/>
 </menu>
