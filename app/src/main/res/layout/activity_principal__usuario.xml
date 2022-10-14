@@ -42,12 +42,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nombre" />
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="42dp"
-                        android:hint="nombre"
-                        android:id="@+id/nombre_usuario"/>
+
+                <EditText
+                    android:id="@+id/nombre_usuario"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="42dp"
+                    android:hint="nombre" />
             </LinearLayout>
 
             <LinearLayout
@@ -59,12 +60,13 @@
                     android:layout_height="wrap_content"
                     android:text="Apellidos"
                     />
+
                 <EditText
-                    android:layout_width="match_parent"
+                    android:id="@+id/apellidos_usuario"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="34dp"
-                    android:hint="apellidos"
-                    android:id="@+id/apellidos_usuario"/>
+                    android:hint="apellidos" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -74,19 +76,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ubicacion" />
+
                 <EditText
-                    android:layout_width="match_parent"
+                    android:id="@+id/ubicacion_usuario"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
-                    android:hint="ubicacion"
-                    android:id="@+id/ubicacion_usuario"/>
+                    android:hint="ubicacion" />
             </LinearLayout>
         </LinearLayout>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2" />
 
     </LinearLayout>
 
 
+
     <TextView
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

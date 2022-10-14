@@ -6,8 +6,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.security.Principal;
 
@@ -27,8 +36,17 @@ public class Loguin extends AppCompatActivity {
         tContra = (EditText) findViewById(R.id.tContra);
         Button bRegistrar = (Button) findViewById(R.id.botonRegistrar);
         Button bLoguin = (Button) findViewById(R.id.botonLoguin);
-        ;
 
+/*
+        //Toolbar
+        Toolbar barra = (Toolbar)findViewById(R.id.barra);
+        setSupportActionBar(barra);
+
+        barra.setTitle("Pagina Loguin");
+
+        //*****!!!!!!!!!!!
+
+*/
         //asociamos acciones a cada uno de estos botones.
 
         bRegistrar.setOnClickListener(new View.OnClickListener() {
@@ -51,10 +69,25 @@ public class Loguin extends AppCompatActivity {
     private void attempLoguin() {
         //funcion que usaremos para intentar loguearnos
 
-        //si da ok entonces ...
-        Intent i = new Intent(this, Principal_Usuario.class);
-        startActivity(i);
-        //esto es una prueba basica para ver si funciona git con github
+        if(!(tUser.getText().toString().isEmpty() && tContra.getText().toString().isEmpty())){
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(tUser.getText().toString(), tContra.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(Loguin.this, "Logueado!",Toast.LENGTH_LONG)
+                                .show();
+                        //intent a la siguiente hoja
+                        //si da ok entonces ...
+                        Intent i = new Intent(Loguin.this, Principal_Usuario.class);
+                        startActivity(i);
+
+                    }else{
+                        Toast.makeText(Loguin.this,task.getException().getMessage(),Toast.LENGTH_LONG);
+                    }
+                }
+            });
+
+        }
 
     }
 }

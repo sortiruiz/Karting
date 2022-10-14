@@ -9,6 +9,10 @@
     android:orientation="vertical"
     android:layout_margin="10dp">
 
+    <include
+        android:id="@+id/barra"
+        layout="@layout/toolbar"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
