@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="Listado"
+        android:id="@+id/listadoEventos"
+        android:icon="@drawable/Listado"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:title="Nuevo Evento"
+        android:id="@+id/NuevoEvento"
+        android:icon="@drawable/Nuevo"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:title="Ajustes"
+        android:id="@+id/Ajustes"
+        android:icon="@drawable/Ajuste"
+        app:showAsAction="ifRoom"/>
+</menu>
