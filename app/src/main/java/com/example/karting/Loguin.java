@@ -54,6 +54,7 @@ public class Loguin extends AppCompatActivity {
         //si da ok entonces ...
         Intent i = new Intent(this, Principal_Usuario.class);
         startActivity(i);
+        //esto es una prueba basica para ver si funciona git con github
 
     }
 }
