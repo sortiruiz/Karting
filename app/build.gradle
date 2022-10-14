@@ -31,8 +31,11 @@ android {
 
 dependencies {
 
+    implementation platform('com.google.firebase:firebase-bom:26.7.0')
+    implementation 'com.google.firebase:firebase-firestore'
     implementation 'com.google.firebase:firebase-auth:21.1.0'
     implementation 'com.google.firebase:firebase-analytics:21.2.0'
+    implementation 'com.google.firebase:firestore'
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'

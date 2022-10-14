@@ -6,11 +6,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 public class Principal_Usuario extends AppCompatActivity {
+
 
     private TextView mTextView;
 
@@ -39,6 +43,7 @@ public class Principal_Usuario extends AppCompatActivity {
 
         //asociamos a la toolbar el menu que hemos creado, debemos de hacer un inglate
 
+        rellenarDatosTablaMejoresTiempos(tablaTiempos);
 
     }
 
@@ -46,5 +51,13 @@ public class Principal_Usuario extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
         return true;
+    }
+    public void rellenarDatosTablaMejoresTiempos(TableLayout tablaTiempos){
+        //conectamos a Firebase
+        FirebaseFirestore ff =  FirebaseFirestore.getInstance();
+        //Recuperamos datos
+        //inflamos en la tabla
+
+
     }
 }

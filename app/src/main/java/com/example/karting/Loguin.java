@@ -53,7 +53,7 @@ public class Loguin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //conectamos con la base de datos y hacemos unr registro.
-                attempLoguin();
+
             }
         });
 
@@ -62,6 +62,7 @@ public class Loguin extends AppCompatActivity {
             public void onClick(View view) {
                 //Aqui debemos de conectarnos con la base de datos de
                 // Firebase para intentar  loguearse
+                attempLoguin();
             }
         });
     }
@@ -79,7 +80,7 @@ public class Loguin extends AppCompatActivity {
                         //intent a la siguiente hoja
                         //si da ok entonces ...
                         Intent i = new Intent(Loguin.this, Principal_Usuario.class);
-                        startActivity(i);
+                        startActivity(i); //funciona perfectamente.
 
                     }else{
                         Toast.makeText(Loguin.this,task.getException().getMessage(),Toast.LENGTH_LONG);
