@@ -7,4 +7,5 @@
     -->
     <string name="hello_world">Hello Square World!</string>
     <string name="title_activity_principal__usuario">Principal_Usuario</string>
+    <string name="title_activity_listado_eventos">ListadoEventos</string>
 </resources>

@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,7 +33,7 @@ public class Principal_Usuario extends AppCompatActivity {
         setContentView(R.layout.activity_principal__usuario);
 
 
-        Intent i = new Intent();
+        Intent i = getIntent();
         String usuario = (String) i.getStringExtra("usuario");
         //aqui debemos de añadir nuestra toolbar
 
@@ -68,12 +69,17 @@ public class Principal_Usuario extends AppCompatActivity {
     public void rellenarCamposUsuario(String usuario){
 
         ImageView imagenUsuario = (ImageView)findViewById(R.id.imagenUsuario);
-        EditText nombreUsuario = (EditText)findViewById(R.id.nombre_usuario);
-        EditText apellidosUsuario = (EditText)findViewById(R.id.apellidos_usuario);
-        EditText ubicacionUsuario = (EditText)findViewById(R.id.ubicacion_usuario);
+        //ESTO DEBERIA SER UN TEXTVIEW PARA LA VISTA DE INFORMACION.
+        TextView nombreUsuario = (TextView)findViewById(R.id.nombre_usuario);
+        TextView apellidosUsuario = (TextView)findViewById(R.id.apellidos_usuario);
+        TextView ubicacionUsuario = (TextView)findViewById(R.id.ubicacion_usuario);
+
+        //TODO ESTO DEBERIA DE HACERSER EN UN AMBITO ASYNCRONO
 
         DocumentReference docRef = ff.collection("Usuario").document("Ficha").collection("Datos").document(usuario);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        docRef
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -81,6 +87,17 @@ public class Principal_Usuario extends AppCompatActivity {
                     if (document.exists()) {
                         //hacer un loggin para ver que ocurre
                         Log.d(TAG,"DocumentSnapshot data: " + document.getData());
+                        Toast.makeText(Principal_Usuario.this,"Recuperando datos, el documento existe", Toast.LENGTH_LONG).show();
+                        System.out.println("Finalizado, ahora rellenamos todos los campos");
+                        Usuario user = (Usuario)   document.toObject(Usuario.class);
+
+
+                        nombreUsuario.setText(user.getNombre());
+                        apellidosUsuario.setText(user.getApellido());
+                        ubicacionUsuario.setText(user.getUbicacion());
+
+
+
                     } else {
                         //Si no existe en el log
                         Log.d(TAG, "No such document");

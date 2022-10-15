@@ -80,7 +80,8 @@ public class Loguin extends AppCompatActivity {
                         //intent a la siguiente hoja
                         //si da ok entonces ...
                         Intent i = new Intent(Loguin.this, Principal_Usuario.class);
-                        i.putExtra("usuario",tUser.getText().toString());
+                        String usuario = tUser.getText().toString();
+                        i.putExtra("usuario",usuario);
                         startActivity(i); //funciona perfectamente.
 
                     }else{
