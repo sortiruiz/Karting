@@ -2,8 +2,10 @@ package com.example.karting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableLayout;
@@ -26,7 +28,8 @@ public class Principal_Usuario extends AppCompatActivity {
     private static final String TAG = "Karting";
     FirebaseFirestore ff =  FirebaseFirestore.getInstance();
     private TextView mTextView;
-
+    String usuario;
+    Usuario user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,13 +37,24 @@ public class Principal_Usuario extends AppCompatActivity {
 
 
         Intent i = getIntent();
-        String usuario = (String) i.getStringExtra("usuario");
+        usuario = (String) i.getStringExtra("usuario");
+        //buscamos el usuario en nuestra bbdd y pasaremos un objeto de el a todos los demas activities
+
+        /*ff.collection("Usuario").document("Ficha").collection("Datos").document(usuario)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            user = (Usuario) task.getResult().toObject(Usuario.class);
+                    }
+                });*/
+
+
         //aqui debemos de añadir nuestra toolbar
 
         Toolbar bar = (Toolbar) findViewById(R.id.barra);
         setSupportActionBar(bar);
         //los botones y demas se añaden en un xml de menu. que luego se añadira a esta toolbar
-
 
 
         // lo principal será conectarse a Firebase y descargar todos los datos
@@ -53,12 +67,35 @@ public class Principal_Usuario extends AppCompatActivity {
         rellenarDatosTablaMejoresTiempos(tablaTiempos);
 
     }
-
+    //inflo el menu en la toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.listadoEventos:
+                listado(); // llamo a una funcion
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    public void listado(){
+
+        Intent i = new Intent(Principal_Usuario.this,ListadoEventos.class);
+        i.putExtra("usuario",usuario);
+        i.putExtra("user",user);
+        startActivity(i);
+
+    }
+
+
     public void rellenarDatosTablaMejoresTiempos(TableLayout tablaTiempos){
         //conectamos a Firebase
         //Recuperamos datos
@@ -89,7 +126,7 @@ public class Principal_Usuario extends AppCompatActivity {
                         Log.d(TAG,"DocumentSnapshot data: " + document.getData());
                         Toast.makeText(Principal_Usuario.this,"Recuperando datos, el documento existe", Toast.LENGTH_LONG).show();
                         System.out.println("Finalizado, ahora rellenamos todos los campos");
-                        Usuario user = (Usuario)   document.toObject(Usuario.class);
+                        user = (Usuario)   document.toObject(Usuario.class);
 
 
                         nombreUsuario.setText(user.getNombre());

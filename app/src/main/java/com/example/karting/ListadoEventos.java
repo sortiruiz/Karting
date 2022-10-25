@@ -1,7 +1,13 @@
 package com.example.karting;
 
 import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -44,14 +50,53 @@ public class ListadoEventos extends AppCompatActivity {
                             for(DocumentSnapshot doc : task.getResult()){
                                 //Aqui tenemos que cada doc es una carrera-evento
                                 //con dos atri. nombre y fecha.
+                                System.out.println(doc.toObject(Carrera.class).getNombre() + doc.toObject(Carrera.class).getDia());
                                 arrayCarreras.add(doc.toObject(Carrera.class));
-                                //esto despues se pasara a nuestro adapter de la listView
-                                list.setAdapter(new AdaptadorLista(ListadoEventos.this,0,arrayCarreras));
-
                             }
+                            //despues de tener toda la lista lo rellenamos en nuestra listview
+                            list.setAdapter(new AdaptadorLista(ListadoEventos.this,0,arrayCarreras));
                         }
                     }
                 });
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // i es la posicion del array que yo les he enviado -- por tanto de aqui pdemos recuperar datos necesarios
+                String dia  = arrayCarreras.get(i).getDia();
+                String nombre = arrayCarreras.get(i).getNombre();
 
+                Intent i3 = getIntent();
+                Usuario user = (Usuario) i3.getSerializableExtra("user");
+                //aqui recupero el usuario descargado desde mi bbdd
+
+
+                Intent i2 = new Intent(ListadoEventos.this,eventoCarrera.class);
+
+                i2.putExtra("user",user);
+
+                i2.putExtra("nombre",nombre);
+                i2.putExtra("dia",dia);
+                startActivity(i2);
+            }
+        });
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.listadoEventos:
+              //  listado(); // llamo a una funcion
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

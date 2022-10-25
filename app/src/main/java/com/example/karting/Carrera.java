@@ -1,20 +1,20 @@
 package com.example.karting;
 
 public class Carrera {
-    private String Nombre;
+    private String nombre;
     private String dia;
     public Carrera(){};
-    public Carrera(String Nombre, String carrera){
+    public Carrera(String nombre, String carrera){
         this.setDia(getDia());
-        this.setNombre(Nombre);
+        this.setNombre(nombre);
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
     public String getDia() {

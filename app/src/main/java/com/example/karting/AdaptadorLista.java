@@ -1,10 +1,12 @@
 package com.example.karting;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,7 +25,6 @@ public class AdaptadorLista extends ArrayAdapter<Carrera> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Carrera carrera = null;
-        position = 0;
         View listItemView = convertView;
 
         LayoutInflater inflater  = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -38,7 +39,9 @@ public class AdaptadorLista extends ArrayAdapter<Carrera> {
         //Asociamos elementos de la lista a objetos
         TextView circuito =(TextView) listItemView.findViewById(R.id.nombreCircuito);
         TextView dia = (TextView)  listItemView.findViewById(R.id.horacarrera);
+        ImageView imageView = (ImageView)listItemView.findViewById(R.id.imagencarrera) ;
 
+        imageView.setImageResource(R.drawable.karticono);
         //escribimos sobre los elementos de la fila
         circuito.setText(carrera.getNombre());
         dia.setText(carrera.getDia());
